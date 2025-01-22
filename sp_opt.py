@@ -114,37 +114,37 @@ class SupplyPlanningModel:
             for t in self.periods
         ])
     
-
+if __name__ == "__main__":
     # Example usage
-model = SupplyPlanningModel()
+    model = SupplyPlanningModel()
 
-# Define products and periods
-products = ['ProductA', 'ProductB']
-periods = list(range(4))  # 4 planning periods
-model.add_products(products)
-model.add_periods(periods)
+    # Define products and periods
+    products = ['ProductA', 'ProductB']
+    periods = list(range(4))  # 4 planning periods
+    model.add_products(products)
+    model.add_periods(periods)
 
-# Setup variables with initial inventory
-initial_inventory = {'ProductA': 100, 'ProductB': 50}
-model.setup_variables(initial_inventory)
+    # Setup variables with initial inventory
+    initial_inventory = {'ProductA': 100, 'ProductB': 50}
+    model.setup_variables(initial_inventory)
 
-# Define demand for each product and period
-demand = {
-    'ProductA': {0: 120, 1: 140, 2: 160, 3: 130},
-    'ProductB': {0: 80, 1: 90, 2: 110, 3: 100}
-}
-model.add_demand_constraints(demand)
+    # Define demand for each product and period
+    demand = {
+        'ProductA': {0: 120, 1: 140, 2: 160, 3: 130},
+        'ProductB': {0: 80, 1: 90, 2: 110, 3: 100}
+    }
+    model.add_demand_constraints(demand)
 
-# Add capacity constraints
-model.add_capacity_constraints(capacity_per_period=300)
+    # Add capacity constraints
+    model.add_capacity_constraints(capacity_per_period=300)
 
-# Define costs
-production_cost = {'ProductA': 10, 'ProductB': 12}
-inventory_cost = {'ProductA': 2, 'ProductB': 2}
-backlog_cost = {'ProductA': 20, 'ProductB': 20}
-model.set_objective(production_cost, inventory_cost, backlog_cost)
+    # Define costs
+    production_cost = {'ProductA': 10, 'ProductB': 12}
+    inventory_cost = {'ProductA': 2, 'ProductB': 2}
+    backlog_cost = {'ProductA': 20, 'ProductB': 20}
+    model.set_objective(production_cost, inventory_cost, backlog_cost)
 
-# Solve and get results
-model.solve()
-results = model.get_results()
-print(results)
+    # Solve and get results
+    model.solve()
+    results = model.get_results()
+    print(results)
